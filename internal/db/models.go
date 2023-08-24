@@ -57,7 +57,7 @@ func init() {
 		new(Label), new(IssueLabel), new(Milestone),
 		new(Mirror), new(Release), new(Webhook), new(HookTask),
 		new(ProtectBranch), new(ProtectBranchWhitelist),
-		new(Team), new(OrgUser), new(TeamUser), new(TeamRepo),
+		new(Team), new(TeamUser), new(TeamRepo),
 	)
 
 	gonicNames := []string{"SSL"}

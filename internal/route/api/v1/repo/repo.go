@@ -87,7 +87,14 @@ func listUserRepositories(c *context.APIContext, username string) {
 	// or an organization isn't a member of.
 	var ownRepos []*db.Repository
 	if user.IsOrganization() {
-		ownRepos, _, err = user.GetUserRepositories(c.User.ID, 1, user.NumRepos)
+		ownRepos, _, err = db.Orgs.AccessibleRepositoriesByUser(
+			c.Req.Context(),
+			user.ID,
+			c.User.ID,
+			1,
+			user.NumRepos,
+			db.AccessibleRepositoriesByUserOptions{},
+		)
 	} else {
 		ownRepos, err = db.GetUserRepositories(&db.UserRepoOptions{
 			UserID:   user.ID,
